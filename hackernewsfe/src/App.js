@@ -15,8 +15,8 @@ componentDidMount() {
     fetch(`https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`)
         .then(response => response.json())
         .then(data => {
-            const data2 = data.slice(0,50);
-            data2.forEach(element => {
+            // const data2 = data.slice(0,200);
+            data.forEach(element => {
                 fetch(`https://hacker-news.firebaseio.com/v0/item/${element}.json`)
                 .then(response => response.json())
                 .then(result => {
