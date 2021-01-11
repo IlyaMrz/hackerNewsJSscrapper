@@ -1,0 +1,14 @@
+/hackernewsfe/node_modules
+/hackernewsfe/.pnp
+/hackernewsfe/.pnp.js
+/hackernewsfe/coverage
+/hackernewsfe/build
+/hackernewsfe/.git
+/hackernewsfe/.eslintcache
+
+/hackerNewsAPI/node_modules
+/hackerNewsAPI/.pnp
+/hackerNewsAPI/.pnp.js
+/hackerNewsAPI/coverage
+/hackerNewsAPI/build
+/hackerNewsAPI/.git
