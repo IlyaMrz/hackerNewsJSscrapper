@@ -6,7 +6,7 @@ const Story = ({ title, score, url }) => {
             {/* <img alt='123' src={`https://robohash.org/set_set4/${score}?size=200x200`} /> */}
             <div>
                 <h2>{title}</h2>
-                <p>Url {url}</p>
+                <a target="_blank" rel="noopener noreferrer" href={url}>{url}</a>
                 <p>Score: {score}</p>
             </div>
         </div>
