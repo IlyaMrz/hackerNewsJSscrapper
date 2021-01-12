@@ -39,14 +39,14 @@ const Story = ({ title, score, url, id, kids, unix_timestamp}) => {
         //         <p>Score: {score}</p>
         //     </div>
         // </div>
-        <article class="center mw5 mw6-ns hidden ba mv4">
+        <article class="center mw5 mw7-ns hidden ba mv3 grow shadow-3">
             <h1 class="f4 bg-light-green mv0 pv2 ph1">{title}</h1>
-            <div class="pa3 bt">
-            <a className='fl w-100' target="_blank" rel="noopener noreferrer" href={url2+id}>{url2+id}</a>
-              <h3> {kids} comments</h3>
-              <a target="_blank" rel="noopener noreferrer" href={url}>{url}</a>
-              <p>Score: {score}</p>
-              <p>Date: {time}</p>
+            <div class="pa1 bt pb0">
+              <a className='fl w-100' target="_blank" rel="noopener noreferrer" href={url2+id}>{url2+id}</a>
+              <h3 className='mv1'> {kids} comments</h3>
+              <a className='mv1' target="_blank" rel="noopener noreferrer" href={url}>{url}</a>
+              <h3 className='mv1'>Score: {score}</h3>
+              <p className='mv1'>Date: {time}</p>
             </div>
         </article>
     );
