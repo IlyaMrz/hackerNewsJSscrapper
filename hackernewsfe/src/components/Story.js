@@ -18,7 +18,7 @@ const Story = ({ title, score, url, id, kids, unix_timestamp}) => {
           } else if (hh === 12) {
               h = 12;
               ampm = 'PM';
-          } else if (hh == 0) {
+          } else if (hh === 0) {
               h = 12;
           }
           // ie: 2013-02-18, 8:35 AM	
