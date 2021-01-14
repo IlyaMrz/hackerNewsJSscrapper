@@ -39,8 +39,12 @@ const Story = ({ title, score, url, id, kids, unix_timestamp}) => {
         //         <p>Score: {score}</p>
         //     </div>
         // </div>
-        <article class="center mw5 mw7-ns hidden ba mv3 grow shadow-3">
-            <h1 class="f4 bg-light-green mv0 pv2 ph1">{title}</h1>
+        <article class="center mw5 mw7-ns hidden ba mv3 grow shadow-3 tc">
+            <div className="f4 bg-light-green ma0 pv0 ph0 fl w-100 pa2 bb flex items-center">
+              <h1 className="f4 bg-light-green ma0 pa2 fl w-90 pv2 br">{title}</h1>
+              <h1 class="f4 bg-light-green ma0 ph1 pa2 fl w-10 center v-mid">Archive</h1>
+              {/* <input onClick={this.onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" /> */}
+            </div>
             <div class="pa1 bt pb0">
               <a className='fl w-100' target="_blank" rel="noopener noreferrer" href={url2+id}>{url2+id}</a>
               <h3 className='mv1'> {kids} comments</h3>
