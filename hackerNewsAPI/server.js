@@ -2,14 +2,16 @@ const express = require('express');
 const bP = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
+const fs = require('fs');
 
+const pas = fs.readFileSync('./pas.txt', 'utf8').toString();
 
 const db = knex({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
         user: 'postgres',
-        password: '',
+        password: pas,
         database: 'hackernews'
     }
 });

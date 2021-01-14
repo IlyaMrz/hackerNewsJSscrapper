@@ -5,6 +5,7 @@
 /hackernewsfe/build
 /hackernewsfe/.git
 /hackernewsfe/.eslintcache
+/hackernewsfe/*.txt
 
 /hackerNewsAPI/node_modules
 /hackerNewsAPI/.pnp
@@ -12,3 +13,4 @@
 /hackerNewsAPI/coverage
 /hackerNewsAPI/build
 /hackerNewsAPI/.git
+/hackerNewsAPI/*.txt
