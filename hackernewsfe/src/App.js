@@ -61,19 +61,23 @@ componentDidMount() {
                         this.setState({storiesDB:eleID});
                     });
                     const array1 = this.state.storiesRaw;
-                    console.log(`1 ${array1}`);
+                    // console.log(`1 ${array1} type ${typeof(array1)}`);
                     const array2 = this.state.storiesDB;
-                    console.log(`2 ${array2}`);
-                    const array3 = array1.filter(val => !array2.includes(val)); // TO DO: wrong arrays comparing
-                    console.log(`array3 ${array3}`);
-                    array3.forEach(element =>{
-                            console.log(`for each3rd ${element}`);
+                    // console.log(`2 ${array2}`);
+                    array2.forEach(element2 => {
+                        array1.forEach(element1 => {
+                            if(element1 == element2){
+                                // console.log(`found ${element} index>> ${array1.indexOf(element)}`);
+                                array1.splice(array1.indexOf(element1),1)
+                            } 
+                        })
+                    })
+                    array1.forEach(element =>{
                             fetch(`https://hacker-news.firebaseio.com/v0/item/${element}.json`)
                             .then(response => response.json())
                             .then(result => {
                                 var joined = this.state.stories.concat(result);
                                 this.setState({stories:joined})
-                                // console.log(result.length)    
                             })
                     })
         }
