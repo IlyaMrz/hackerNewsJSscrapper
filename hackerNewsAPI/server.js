@@ -3,15 +3,17 @@ const bP = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
 const fs = require('fs');
+const archive = require('./controllers/archive');
 
-const pas = fs.readFileSync('./pas.txt', 'utf8').toString();
+
+const password = fs.readFileSync('./pas.txt', 'utf8').toString();
 
 const db = knex({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
         user: 'postgres',
-        password: pas,
+        password: password,
         database: 'hackernews'
     }
 });
@@ -27,6 +29,8 @@ app.get('/', (req,res) =>{
         res.json(i)
     })
 })
+
+app.post('/archive', (req, res) => {archive.handleArchive(req,res,db)})
 
 app.listen(3000, () => {
     console.log('app is running on port 3000.')
