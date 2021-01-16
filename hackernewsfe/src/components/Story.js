@@ -33,7 +33,7 @@ const Story = ({ title, score, url, id, kids, unix_timestamp, submitArchive}) =>
         <article className="center mw5 mw7-ns hidden ba mv3 shadow-3 tc">
             <div className="f4 bg-light-green ma0 pv0 ph0 fl w-100 pa2 bb flex items-center">
               <h1 className="f4 bg-light-green ma0 pa2 fl w-90 pv2 br">{title}</h1>
-              <a className="f4 bg-light-green ma0 ph1 pa2 fl w-10 center v-mid" href="#" onClick={submitArchive.bind(this,id)}>Archive</a>
+              <a className="f4 bg-light-green ma0 ph1 pa2 fl w-10 center v-mid link dim navy" href="#" onClick={submitArchive.bind(this,id)}>Archive</a>
             </div>
             <div className="pa1 bt pb0">
               <a className='fl w-100' target="_blank" rel="noopener noreferrer" href={url2+id}>{url2+id}</a>

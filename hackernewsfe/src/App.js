@@ -1,7 +1,13 @@
 import './App.css';
 import React, { Component } from 'react';
 import StoriesList from './components/StoriesList';
+import Signin from './components/signin';
+import Hat from './components/Hat';
 
+const initialState = {
+    route: 'signin',
+    isSignedIn: false,
+  }
   
 class App extends Component {
     constructor() {
@@ -10,7 +16,9 @@ class App extends Component {
             stories: [],
             storiesRaw: [],
             storiesDB: [],
-            stroiesToDisplay: []
+            stroiesToDisplay: [],
+            route: 'signin',
+            isSignedIn: false,
         }
     }
 
@@ -18,7 +26,7 @@ class App extends Component {
         fetch(`https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`)
             .then(response => response.json())
             .then(data => {
-                const data2 = data.slice(0,100); // comment for data
+                const data2 = data.slice(0,70); // comment for data
                 this.setState({storiesRaw:data2})
                 })
                 fetch('http://localhost:3000/')
@@ -68,17 +76,38 @@ class App extends Component {
         })
     };
 
+    onRouteChange = (route) => {
+        if (route === 'signin') {
+          this.setState(initialState)
+        } else if (route === 'signed') {
+          this.setState({ isSignedIn: true })
+          console.log(route)
+        }
+        this.setState({ route: route });
+      }
 
 
     render() {
-        const { stories } = this.state;
-        return !stories.length ?
-            <h1>loading</h1> :
-            <div className='tc'>
-                <h1>Best hacker news!</h1>
-                    <StoriesList stories={stories} submitArchive={this.onSubmitArchive} />
-            </div>
-
+        const { stories, route } = this.state;
+        return (
+                <div>
+                    {route === 'signin'?
+                        <Signin  onRouteChange={this.onRouteChange} />
+                    :route === 'signed'?
+                        !stories.length ?
+                        <div>
+                            <h1>loading</h1>
+                            <Hat onRouteChange={this.onRouteChange}/>
+                        </div> :
+                        <div className='tc'>
+                                <Hat onRouteChange={this.onRouteChange}/>
+                                <h1>Best hacker news!</h1>
+                                <StoriesList stories={stories} submitArchive={this.onSubmitArchive}/>
+                        </div>
+                        :<div>123</div>
+                    }
+                </div>
+        )
         }
 }
 

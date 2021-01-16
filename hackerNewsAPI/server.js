@@ -4,6 +4,7 @@ const cors = require('cors');
 const knex = require('knex');
 const fs = require('fs');
 const archive = require('./controllers/archive');
+const signin = require('./controllers/signin');
 
 
 const password = fs.readFileSync('./pas.txt', 'utf8').toString();
@@ -30,8 +31,8 @@ app.get('/', (req,res) =>{
     })
 })
 
-app.post('/archive', (req, res) => {archive.handleArchive(req,res,db)})
-
+app.post('/archive', (req, res) => {archive.handleArchive(req,res,db)});
+app.post('/signin', (req, res) => {signin.handlerSignin(req,res)});
 app.listen(3000, () => {
     console.log('app is running on port 3000.')
 })
