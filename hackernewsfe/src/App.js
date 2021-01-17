@@ -6,7 +6,6 @@ import Hat from './components/Hat';
 
 const initialState = {
     route: 'signin',
-    isSignedIn: false,
   }
   
 class App extends Component {
@@ -79,10 +78,7 @@ class App extends Component {
     onRouteChange = (route) => {
         if (route === 'signin') {
           this.setState(initialState)
-        } else if (route === 'signed') {
-          this.setState({ isSignedIn: true })
-          console.log(route)
-        }
+        } 
         this.setState({ route: route });
       }
 

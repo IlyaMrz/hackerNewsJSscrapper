@@ -40,7 +40,7 @@ const Story = ({ title, score, url, id, kids, unix_timestamp, submitArchive}) =>
               <h3 className='mv1'> {kids} comments</h3>
               <a className='mv1' target="_blank" rel="noopener noreferrer" href={url}>{url}</a>
               <h3 className='mv1'>Score: {score}</h3>
-              <p className='mv1'>Date: {time}</p>
+              <p className='mv1'>Publication date: {time}</p>
             </div>
         </article>
     );
