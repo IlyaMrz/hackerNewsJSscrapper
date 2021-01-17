@@ -7,7 +7,8 @@ class Hat extends React.Component {
     render() {
         return (
             <div>
-                <a href='' className="tr fl w-100 pr3 link dim dark-green" onClick={this.RoutChange}> Log Out</a>
+                <div className="fl w-90 pa2"></div>
+                <div className="fl w-10 pa2"><a href='' className="f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-green grow shadow-3" onClick={this.RoutChange}> Log Out</a></div>
             </div>
 
         );
