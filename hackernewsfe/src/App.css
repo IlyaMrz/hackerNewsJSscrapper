@@ -17,3 +17,8 @@ code {
 a{
   color:blue;
   }
+
+div {
+  overflow:hidden;
+  text-overflow: ellipsis;
+}

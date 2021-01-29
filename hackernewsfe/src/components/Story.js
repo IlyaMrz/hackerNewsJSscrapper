@@ -11,7 +11,7 @@ const Story = ({ title, score, url, id, kids, unix_timestamp, submitArchive}) =>
               <h1 className="f4 bg-light-green ma0 pa2 fl w-90 pv2 br">{title}</h1>
               <a className="f4 bg-light-green ma0 ph1 pa2 fl w-10 link dim navy" href="#" onClick={submitArchive.bind(this,id)}>Archive</a>
             </div>
-            <div className="pa1 bt pb0">
+            <div className="pa1 pv0">
               <a target="_blank" rel="noopener noreferrer" href={url2+id}>{url2+id}</a>
               <h3 className='mv1'> {kids} comments</h3>
               <a target="_blank" rel="noopener noreferrer" href={url}>{url}</a>
