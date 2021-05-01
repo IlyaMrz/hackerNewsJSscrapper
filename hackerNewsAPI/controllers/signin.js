@@ -4,6 +4,7 @@ const mypas = fs.readFileSync('./pasS.txt', 'utf8').toString();
 
 
 const handlerSignin = (req, res) => {
+	return res.json({'staatus':'true'}) // remove to use userLogin
     const {email, password} = req.body;
     if (!email || !password) {
         return res.status(400).json('incorrect form submission');
