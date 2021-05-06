@@ -14,3 +14,11 @@
 /hackerNewsAPI/build
 /hackerNewsAPI/.git
 /hackerNewsAPI/*.txt
+
+/hackernews_hooks_Firestore/node_modules
+/hackernews_hooks_Firestore/.pnp
+/hackernews_hooks_Firestore/.pnp.js
+/hackernews_hooks_Firestore/coverage
+/hackernews_hooks_Firestore/build
+/hackernews_hooks_Firestore/.git
+/hackernews_hooks_Firestore/*.txt
