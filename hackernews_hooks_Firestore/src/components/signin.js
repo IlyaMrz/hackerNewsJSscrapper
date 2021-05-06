@@ -8,7 +8,7 @@ const Signin = () => {
         await signInWithGoogle()
     }
     return (
-            <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center" >
+            <article style={{'marginBottom':'50vh'}} className="br3 ba b--black-10 mv4 w-100 w-50-m w-250-l mw6 shadow-5 center" >
             <main className="pa4 black-80">
                 <form className="measure" style={{'display':'flex', 'justifyContent':'center'}}>
                     {/* <button onClick={(e)=>loginHandle(e)}>sign in with google</button> */}
