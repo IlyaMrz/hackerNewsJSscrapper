@@ -3,16 +3,19 @@ import {signInWithGoogle} from '../firebase/firebase.utils';
 import './Gbutton.scss';
 
 const Signin = () => {
-    const loginHandle = async (e) => {
-        e.preventDefault()
-        await signInWithGoogle()
+    const loginHandle = async () => {
+        try {
+            await signInWithGoogle()
+        } catch (error) {
+            alert(error)
+            console.log(error)
+        }
     }
     return (
             <article style={{'marginBottom':'50vh'}} className="br3 ba b--black-10 mv4 w-100 w-50-m w-250-l mw6 shadow-5 center" >
             <main className="pa4 black-80">
                 <form className="measure" style={{'display':'flex', 'justifyContent':'center'}}>
-                    {/* <button onClick={(e)=>loginHandle(e)}>sign in with google</button> */}
-                    <div className="google-btn" onClick={(e)=>loginHandle(e)}>
+                    <div className="google-btn" onClick={()=>loginHandle()}>
                         <div className="google-icon-wrapper">
                             <img alt="google btn" className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
                         </div>
