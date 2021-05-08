@@ -21,8 +21,8 @@ const App = () => {
             if (!currentUser) return setArchived([])
             const newsRef = await getNewsFirestoreRef(currentUser.uid)
             const snapshotNews = await newsRef.get()
-            
-            console.log('snapshotNews.data().archived', snapshotNews.data().archived)
+
+            // console.log('snapshotNews.data().archived', snapshotNews.data().archived)
 
             const updatedStories = stories.filter(story => !snapshotNews.data().archived.includes(story.id))
             setStories(updatedStories)
@@ -32,7 +32,7 @@ const App = () => {
     },[currentUser])
 
     useEffect(()=>{
-        console.log('archived stories effect', archived)
+        // console.log('archived stories effect', archived)
         const archivedToFirestore = async (currentUser) =>{
             if (!currentUser) return null
             const newsRef = await getNewsFirestoreRef(currentUser.uid)
@@ -67,11 +67,6 @@ const App = () => {
         setStories(updatedStories)
     }
 
-    // const handleAmountChange = (e) => {
-    //     if (amount !== e.target.value) {
-    //         setAmount(e.target.value)
-    //     }
-    // }
 
     if (currentUser) {
         return (
@@ -81,7 +76,6 @@ const App = () => {
                         <div> 
                             <span>min score now: {minScore} </span>
                             <input placeholder="min score" type="number" min='0' onChange={(e) => setMinScore(e.target.value)}/>
-                            {/* <input placeholder="max 200" type="number" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/> */}
                             <input placeholder="amount" type="range" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/>
                             {amount} <span> - amount of news filtered</span>
                         </div>
