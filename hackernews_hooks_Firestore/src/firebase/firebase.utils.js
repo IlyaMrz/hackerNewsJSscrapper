@@ -4,6 +4,17 @@ import 'firebase/auth';
 import config from './config';
 
 
+export const getNewsFirestoreRef = async (userId) => {
+  const newsRef = firestore.collection('news').doc(userId);
+  const snapShot = await newsRef.get();
+
+  if (!snapShot.exists) {
+    await newsRef.set({ archived: [] })
+    return newsRef;
+  } else {
+    return newsRef;
+  }
+};
 
 
 
@@ -12,14 +23,14 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
-export const getCurrentUser = () => {
-    return new Promise((resolve, reject) => {
-      const unsubscribe = auth.onAuthStateChanged(userAuth => {
-        unsubscribe();
-        resolve(userAuth);
-      }, reject);
-    });
-  };
+// export const getCurrentUser = () => {
+//     return new Promise((resolve, reject) => {
+//       const unsubscribe = auth.onAuthStateChanged(userAuth => {
+//         unsubscribe();
+//         resolve(userAuth);
+//       }, reject);
+//     });
+//   };
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

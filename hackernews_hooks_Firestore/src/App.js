@@ -5,17 +5,48 @@ import Signin from './components/signin';
 import Hat from './components/Hat';
 import axios from 'axios';
 import {AuthContext} from './providers/auth';
+import { getNewsFirestoreRef } from './firebase/firebase.utils';
 
 
 
 const App = () => {
     const [stories, setStories] = useState([]);
-    const [minScore, setMinScore] = useState(100);
-    const [amount, setAmount] = useState(5);
+    const [archived, setArchived] = useState([]);
+    const [minScore, setMinScore] = useState(400);
+    const [amount, setAmount] = useState(10);
     const { currentUser } = useContext(AuthContext);
 
     useEffect(()=>{
+        const getArchivedFromFirestore = async (currentUser) =>{
+            if (!currentUser) return setArchived([])
+            const newsRef = await getNewsFirestoreRef(currentUser.uid)
+            const snapshotNews = await newsRef.get()
+            
+            console.log('snapshotNews.data().archived', snapshotNews.data().archived)
+
+            const updatedStories = stories.filter(story => !snapshotNews.data().archived.includes(story.id))
+            setStories(updatedStories)
+            setArchived(snapshotNews.data().archived)
+        }
+        getArchivedFromFirestore(currentUser)
+    },[currentUser])
+
+    useEffect(()=>{
+        console.log('archived stories effect', archived)
+        const archivedToFirestore = async (currentUser) =>{
+            if (!currentUser) return null
+            const newsRef = await getNewsFirestoreRef(currentUser.uid)
+
+            await newsRef.set({archived})
+        }
+        archivedToFirestore(currentUser)
+
+    },[archived,currentUser])
+
+    useEffect(()=>{
         const fetchTop = async () =>{
+            console.log('use effect')
+            setStories([])
             let idsStories = await axios('https://hacker-news.firebaseio.com/v0/beststories.json');
             idsStories = idsStories.data;
             idsStories.forEach(el => {
@@ -30,18 +61,31 @@ const App = () => {
     fetchTop()
     },[])
 
+    const onSubmitArchive = (id) => {
+        const updatedStories = stories.filter(story => story.id !== id)
+        setArchived(archived => [...archived, id])
+        setStories(updatedStories)
+    }
+
+    // const handleAmountChange = (e) => {
+    //     if (amount !== e.target.value) {
+    //         setAmount(e.target.value)
+    //     }
+    // }
+
     if (currentUser) {
         return (
                 <div className='tc'>
                         <Hat />
                         <h1>Best hacker news!</h1>
                         <div> 
-                            <span>min score:  </span>
-                            <input placeholder="min score 100 default" type="number" min='0' onChange={(e) => setMinScore(e.target.value)}/>
+                            <span>min score now: {minScore} </span>
+                            <input placeholder="min score" type="number" min='0' onChange={(e) => setMinScore(e.target.value)}/>
+                            {/* <input placeholder="max 200" type="number" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/> */}
                             <input placeholder="amount" type="range" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/>
                             {amount} <span> - amount of news filtered</span>
                         </div>
-                        <StoriesList stories={stories.slice(0,amount)} minScore={minScore}/>
+                        <StoriesList stories={stories.slice(0,amount)} minScore={minScore} onSubmitArchive={onSubmitArchive}/>
                 </div>
         )
     }
