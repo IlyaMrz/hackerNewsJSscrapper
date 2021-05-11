@@ -14,8 +14,8 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [stories, setStories] = useState([]);
     const [archived, setArchived] = useState([]);
-    const [minScore, setMinScore] = useState(400);
-    const [amount, setAmount] = useState(10);
+    const [minScore, setMinScore] = useState(300);
+    const [amount, setAmount] = useState(20);
     const { currentUser } = useContext(AuthContext);
 
     useEffect(()=>{
@@ -71,14 +71,15 @@ const App = () => {
         return (
                 <div className='tc'>
                         <Hat />
-                        <h1>Best hacker news!</h1>
                         {isLoading ? <Spinner /> :
                         <>
                             <div> 
                                 <span>min score now: {minScore} </span>
-                                <input placeholder="min score" type="number" min='0' onChange={(e) => setMinScore(e.target.value)}/>
+                                <input placeholder="min score" type="range" min='1' max='800' onChange={(e) => setMinScore(e.target.value)}/>
+                                <br />
+                                <span>amount of news filtered: </span>
                                 <input placeholder="amount" type="range" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/>
-                                {amount} <span> - amount of news filtered</span>
+                                {amount} 
                             </div>
                             <StoriesList stories={stories.slice(0,amount)} minScore={minScore} onSubmitArchive={onSubmitArchive}/>
                         </>
