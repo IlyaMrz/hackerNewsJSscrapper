@@ -51,11 +51,12 @@ const App = () => {
             updatedIds.forEach(el => {
                 let Fstory = async () =>{ 
                     let story = await axios(`https://hacker-news.firebaseio.com/v0/item/${el}.json`)
-                        setStories(stories => [...stories, story.data].sort((a,b)=>b.score - a.score))
+                    setStories(stories => [...stories, story.data].sort((a,b)=>b.score - a.score))
+                    if (isLoading) setIsLoading(false)
                     }
                 Fstory()
             })
-            setIsLoading(false)
+            
         }
         getArchivedFromFirestore()
     },[currentUser])
