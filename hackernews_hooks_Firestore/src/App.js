@@ -21,18 +21,18 @@ const App = () => {
     useEffect(()=>{
         if (isLoading) return null
         console.log('archived stories effect', archived)
-        const archivedToFirestore = async (currentUser) =>{
+        const archivedToFirestore = async () =>{
             if (!currentUser) return null
             const newsRef = await getNewsFirestoreRef(currentUser.uid)
 
             await newsRef.set({archived})
         }
-        archivedToFirestore(currentUser)
+        archivedToFirestore()
 
     },[archived])
 
     useEffect(()=>{
-        const getArchivedFromFirestore = async (currentUser) =>{
+        const getArchivedFromFirestore = async () =>{
             if (!currentUser)  {
                 setArchived([]) 
                 setStories([])
@@ -57,7 +57,7 @@ const App = () => {
             })
             setIsLoading(false)
         }
-        getArchivedFromFirestore(currentUser)
+        getArchivedFromFirestore()
     },[currentUser])
 
     const onSubmitArchive = (id) => {
