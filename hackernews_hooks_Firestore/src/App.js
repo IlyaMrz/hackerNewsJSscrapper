@@ -33,7 +33,11 @@ const App = () => {
 
     useEffect(()=>{
         const getArchivedFromFirestore = async (currentUser) =>{
-            if (!currentUser) return setArchived([])
+            if (!currentUser)  {
+                setArchived([]) 
+                setStories([])
+                return null
+            }
             console.log('starting noooow')
             const newsRef = await getNewsFirestoreRef(currentUser.uid)
             const snapshotNews = await newsRef.get() // got archived users news
