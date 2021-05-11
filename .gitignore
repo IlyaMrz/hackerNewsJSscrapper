@@ -15,7 +15,15 @@
 /hackerNewsAPI/.git
 /hackerNewsAPI/*.txt
 
-/hackernews_hooks_Firestore/node_modules
+node_modules
+pnp
+pnp.js
+coverage
+build
+.git
+*.txt
+
+/hackernews_hooks_Firestore/.node_modules
 /hackernews_hooks_Firestore/.pnp
 /hackernews_hooks_Firestore/.pnp.js
 /hackernews_hooks_Firestore/coverage
