@@ -75,8 +75,13 @@ const App = () => {
                         {isLoading ? <Spinner /> :
                         <>
                             <div> 
-                                <span>min score now: {minScore} </span>
-                                <input placeholder="min score" type="range" min='1' max='800' onChange={(e) => setMinScore(e.target.value)}/>
+                                <span className="mr2">min score now: <span className="b">{minScore}</span> </span>
+                                <span className="pv2 ba">
+                                    <span className="f6 link dim ph1 pv1 ma1 dib white bg-black" onClick={() => setMinScore(0)} >0</span>
+                                    <span className="f6 link dim ph2 pv2 ma1 dib white bg-black" onClick={() => setMinScore(200)}>200</span>
+                                    <spanc className="f6 link dim ph2 pv2 ma1 dib white bg-dark-blue" onClick={() => setMinScore(350)}>350</spanc>
+                                    <span className="f6 link dim ph2 pv2 ma1 dib white bg-dark-pink" onClick={() => setMinScore(500)}>500</span>
+                                </span>
                                 <br />
                                 <span>amount of news filtered: </span>
                                 <input placeholder="amount" type="range" min='1' max='200' onChange={(e) => setAmount(e.target.value)}/>
